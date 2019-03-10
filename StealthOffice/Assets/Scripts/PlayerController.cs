@@ -11,11 +11,20 @@ public class PlayerController : MonoBehaviour
     Camera viewCamera;
     Vector3 velocity;
 
+    public Light spotlight;
+    public float viewDistance;
+    public LayerMask viewMask;
+    float viewAngle;
+    Color originalSpotlightColour;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         viewCamera = Camera.main;
+
+        viewAngle = spotlight.spotAngle;
+        originalSpotlightColour = spotlight.color;
     }
 
     // Update is called once per frame
@@ -28,5 +37,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + velocity * Time.deltaTime);
+    }
+
+    void OnDrawGizmos()
+    {
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
     }
 }
