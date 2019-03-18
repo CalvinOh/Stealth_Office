@@ -15,6 +15,7 @@ public class Guard : MonoBehaviour
 
 
     public float speed = 5;
+    public float chaseSpeed = 2;
     public float waitTime = .3f;
     public float turnSpeed = 90;
 
@@ -61,24 +62,31 @@ public class Guard : MonoBehaviour
 
     private void UpdateChaseState()
     {
-        desPos = player.transform.position;
-
+       
+       
         if (CanSeePlayer() == false)
         {
             curState = FSMState.Patrol;
+           
         }
         else
         {
-            curState = FSMState.Chase;
+            if(this.transform.position != desPos)
+            {
+
+                this.transform.LookAt(player.transform);
+                desPos = player.transform.position;
+                transform.Translate(Vector3.forward * Time.deltaTime * chaseSpeed);
+            }
         }
 
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+       
     }
 
     private void UpdatePatrolState()
     {
-       StartCoroutine(FollowPath(waypoints));
-
+        StartCoroutine(FollowPath(waypoints));
+        
     
     }
 
@@ -88,10 +96,14 @@ public class Guard : MonoBehaviour
         if (CanSeePlayer())
         {
             spotlight.color = Color.red;
+            StopCoroutine(FollowPath(waypoints));
+            curState = FSMState.Chase;
+            FSMUpdate();
         }
         else
         {
             spotlight.color = originalSpotlightColour;
+            
         }
     }
 
@@ -111,7 +123,6 @@ public class Guard : MonoBehaviour
         }
         return false;
     }
-
     IEnumerator FollowPath(Vector3[] waypoints)
     {
         transform.position = waypoints[0];
@@ -123,12 +134,15 @@ public class Guard : MonoBehaviour
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetWaypoint, speed * Time.deltaTime);
+    
+           
             if (transform.position == targetWaypoint)
             {
                 targetWaypointIndex = (targetWaypointIndex + 1) % waypoints.Length;
                 targetWaypoint = waypoints[targetWaypointIndex];
                 yield return new WaitForSeconds(waitTime);
                 yield return StartCoroutine(TurnToFace(targetWaypoint));
+
             }
             yield return null;
         }
