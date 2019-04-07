@@ -11,6 +11,7 @@ public class Grid : MonoBehaviour
     public float nodeRadius;
     public LayerMask unwalkableMask;
     Node[,] grid;
+    public List<Node> path;
 
     float nodeDiameter;
     int gridSizeX, gridSizeY;
@@ -36,11 +37,33 @@ public class Grid : MonoBehaviour
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
 
-                grid[x, y] = new Node(walkable, worldPoint);
+                grid[x, y] = new Node(walkable, worldPoint, x, y);
             }
         }
     }
+    public List<Node> GetNeighbours(Node node)
+    {
+        List<Node> neighbours = new List<Node>();
 
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0)
+                    continue;
+
+                int checkX = node.gridX + x;
+                int checkY = node.gridY + y;
+
+                if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
+                {
+                    neighbours.Add(grid[checkX, checkY]);
+                }
+            }
+        }
+
+        return neighbours;
+    }
     public Node NodeFromWorldPoint(Vector3 worldPosition)
     {
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
@@ -63,9 +86,27 @@ public class Grid : MonoBehaviour
             Node playerNode = NodeFromWorldPoint(player.position);
             foreach(Node n in grid)
             {
-                Gizmos.color = (n.walkable) ? Color.white : Color.red;
+               if(!n.walkable)
+                {
+                    Gizmos.color = Color.red;
+                }
+               else
+                {
+                    Gizmos.color = Color.white;
+                }
 
-                if(playerNode == n)
+                if (path != null)
+                {
+                    if (path.Contains(n))
+                    {
+                        Gizmos.color = Color.black;
+
+                    }
+                       
+                }
+                    
+
+                if (playerNode == n)
                 {
                     Gizmos.color = Color.cyan;
                 }
