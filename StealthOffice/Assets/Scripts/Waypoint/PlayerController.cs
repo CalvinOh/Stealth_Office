@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     
-    public float moveSpeed = 6;
+    public float moveSpeed;
 
     Rigidbody rb;
     Camera viewCamera;

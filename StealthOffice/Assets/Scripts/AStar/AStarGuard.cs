@@ -14,6 +14,7 @@ public class AStarGuard : MonoBehaviour
 
     public float speed;
     public GameObject pathfinding;
+    public GameObject sentry;
 
     public States curState;
 
@@ -25,13 +26,12 @@ public class AStarGuard : MonoBehaviour
 
     float elapsedTime;
 
-    bool alertState;
-
     void Start()
     {
         viewAngle = spotlight.spotAngle;
         originalSpotlightColour = spotlight.color;
         elapsedTime = 5f;
+ 
     }
 
     void StateUpdate()
@@ -50,11 +50,25 @@ public class AStarGuard : MonoBehaviour
     private void UpdateIdleState()
     {
         spotlight.enabled = false;
+
+        if(sentry.GetComponent<SentryScript>().CanSeePlayer())
+        {
+            curState = States.Chase;
+        }
+        
+
     }
 
     private void UpdateChaseState()
     {
         MoveToTarget();
+
+        if (!sentry.GetComponent<SentryScript>().CanSeePlayer())
+        {
+            curState = States.Alert;
+        }
+     
+       
     }
 
     private void UpdateAlertState()
@@ -92,7 +106,6 @@ public class AStarGuard : MonoBehaviour
 
     void OnDrawGizmos()
     {
-
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
     }

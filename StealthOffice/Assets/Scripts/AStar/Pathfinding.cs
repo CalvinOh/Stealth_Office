@@ -7,7 +7,7 @@ public class Pathfinding : MonoBehaviour
    
 
 
-    public Transform seeker, target;
+    public Transform seeker, seeker2, target;
     Grid grid;
 
     public List<Node> path;
