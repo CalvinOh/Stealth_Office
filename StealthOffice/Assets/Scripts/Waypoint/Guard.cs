@@ -32,14 +32,15 @@ public class Guard : MonoBehaviour
 
     Vector3 desPos;
 
-
+    Animator animator;
     void Start()
     {
         curState = FSMState.Patrol;
         player = GameObject.FindGameObjectWithTag("Player");
         viewAngle = spotlight.spotAngle;
         originalSpotlightColour = spotlight.color;
-
+        animator = GetComponent<Animator>();
+        animator.SetBool("IsSpotted", true);
         waypoints = new Vector3[pathHolder.childCount];
         for (int i = 0; i < waypoints.Length; i++)
         {

@@ -8,13 +8,13 @@ public class AStarGuard : MonoBehaviour
     public enum States
     {
         Chase,
-        Alert,
         Idle,
     }
 
     public float speed;
     public GameObject pathfinding;
     public GameObject sentry;
+   
 
     public States curState;
 
@@ -24,65 +24,58 @@ public class AStarGuard : MonoBehaviour
     float viewAngle;
     Color originalSpotlightColour;
 
-    float elapsedTime;
+    Animator anim;
 
     void Start()
     {
         viewAngle = spotlight.spotAngle;
         originalSpotlightColour = spotlight.color;
-        elapsedTime = 5f;
- 
+        anim = GetComponent<Animator>();
+
+        curState = States.Idle;
     }
 
     void StateUpdate()
     {
         switch (curState)
         {
-            case States.Alert: UpdateAlertState(); break;
             case States.Chase: UpdateChaseState(); break;
             case States.Idle: UpdateIdleState(); break;
         }
 
-        elapsedTime += Time.deltaTime;
+        
 
     }
 
     private void UpdateIdleState()
     {
         spotlight.enabled = false;
+  
 
-        if(sentry.GetComponent<SentryScript>().CanSeePlayer())
+        if (sentry.GetComponent<SentryScript>().CanSeePlayer())
         {
+            anim.SetBool("IsSpotted", true);
             curState = States.Chase;
         }
-        
+
 
     }
 
     private void UpdateChaseState()
     {
+        pathfinding.GetComponent<Pathfinding>().target = pathfinding.GetComponent<Pathfinding>().target;
+
         MoveToTarget();
 
         if (!sentry.GetComponent<SentryScript>().CanSeePlayer())
         {
-            curState = States.Alert;
+            anim.SetBool("IsSpotted", false);
+            curState = States.Idle;
         }
      
        
     }
 
-    private void UpdateAlertState()
-    {
-        spotlight.enabled = true;
-        spotlight.transform.Rotate(0,1,0,Space.Self);
-
-        if(elapsedTime >= 15f + Time.deltaTime)
-        {
-            print("Switching to idle mode");
-            curState = States.Idle;
-        }
-
-    }
 
     void Update()
     {
