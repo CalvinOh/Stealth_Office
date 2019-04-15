@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: b0eea3bcae4b1e249b9caa8ab8e3b63e
+  productGUID: 00000000000000000000000000000000
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -231,8 +231,8 @@ PlayerSettings:
   appleEnableAutomaticSigning: 0
   iOSRequireARKit: 0
   appleEnableProMotion: 0
-  clonedFromGUID: c0afd0d1d80e3634a9dac47e8a0426ea
-  templatePackageId: com.unity.template.3d@1.0.4
+  clonedFromGUID: 371f3981bd1f5a34793bb979ce7e7005
+  templatePackageId: 
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
@@ -613,7 +613,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: 5ebfbe6f-95c2-4844-96f6-fd19fce99d98
   framebufferDepthMemorylessMode: 0
-  projectName: StealthOffice (1)
+  projectName: 
   organizationId: calvinoh
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

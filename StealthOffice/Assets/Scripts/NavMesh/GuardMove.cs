@@ -186,7 +186,10 @@ public class GuardMove : MonoBehaviour
         {
             curState = States.Catch;
         }
-        else
-            curState = States.Chase;
+       
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        curState = States.Chase;
     }
 }
