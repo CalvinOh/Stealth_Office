@@ -66,7 +66,7 @@ public class AStarGuard : MonoBehaviour
         pathfinding.GetComponent<Pathfinding>().target = pathfinding.GetComponent<Pathfinding>().target;
 
         MoveToTarget();
-
+        Debug.Log("Chasing");
         if (!sentry.GetComponent<SentryScript>().CanSeePlayer())
         {
             anim.SetBool("IsSpotted", false);

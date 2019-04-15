@@ -78,6 +78,7 @@ public class Guard : MonoBehaviour
                 this.transform.LookAt(player.transform);
                 desPos = player.transform.position;
                 transform.Translate(Vector3.forward * Time.deltaTime * chaseSpeed);
+                Debug.Log("Intruder Spotted!");
             }
         }
 

@@ -80,7 +80,7 @@ public class SentryScript : MonoBehaviour
        {
            transform.LookAt(player.transform);
            spotlight.color = Color.red;
-
+            Debug.Log("Target Locked On. Deploying Hound");
         }
 
 
