@@ -14,10 +14,14 @@ public class PlayerMove : MonoBehaviour
     public LayerMask viewMask;
     float viewAngle;
     public bool SpotLightOn;
+
+    SphereCollider sphereCollider;
+    float radius;
     private void Awake()
     {
         charController = GetComponent<CharacterController>();
-
+        sphereCollider = GetComponent<SphereCollider>();
+        radius = sphereCollider.radius;
         viewAngle = spotlight.spotAngle;
         SpotLightOn = true;
     }
@@ -39,6 +43,29 @@ public class PlayerMove : MonoBehaviour
                 SpotLightOn = true;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            movementSpeed = movementSpeed * 1.5f;
+            sphereCollider.radius = 8;
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            movementSpeed = movementSpeed / 1.5f;
+            sphereCollider.radius = 6;
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            movementSpeed = movementSpeed * 0.5f;
+            sphereCollider.radius = 1;
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            movementSpeed = movementSpeed / 0.5f;
+            sphereCollider.radius = 6;
+        }
+
+        radius = sphereCollider.radius;
     }
 
     private void PlayerMovement()
@@ -53,5 +80,10 @@ public class PlayerMove : MonoBehaviour
 
    
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(this.transform.position, radius);
 
+    }
 }

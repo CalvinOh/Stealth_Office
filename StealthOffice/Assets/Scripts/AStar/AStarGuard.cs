@@ -60,6 +60,8 @@ public class AStarGuard : MonoBehaviour
         Debug.Log("Returning Home");
         pathfinding.GetComponent<Pathfinding>().target = pathfinding.GetComponent<Pathfinding>().homeLocation;
 
+        pathfinding.GetComponent<Pathfinding>().FindPath(pathfinding.GetComponent<Pathfinding>().seeker.position, pathfinding.GetComponent<Pathfinding>().target.position);
+
         MoveToTarget();
 
         if (sentry.GetComponent<SentryScript>().CanSeePlayer())
@@ -92,6 +94,8 @@ public class AStarGuard : MonoBehaviour
     private void UpdateChaseState()
     {
         pathfinding.GetComponent<Pathfinding>().target = pathfinding.GetComponent<Pathfinding>().player;
+
+        pathfinding.GetComponent<Pathfinding>().FindPath(pathfinding.GetComponent<Pathfinding>().seeker.position, pathfinding.GetComponent<Pathfinding>().target.position);
 
         MoveToTarget();
 

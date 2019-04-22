@@ -147,10 +147,10 @@ MonoBehaviour:
   horizontalInputName: Horizontal
   verticalInputName: Vertical
   movementSpeed: 10
-  spotlight: {fileID: 0}
+  spotlight: {fileID: 1351314674}
   viewMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   SpotLightOn: 0
 --- !u!1 &1351314672
 GameObject:

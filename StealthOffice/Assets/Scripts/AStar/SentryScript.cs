@@ -11,7 +11,12 @@ public class SentryScript : MonoBehaviour
         Homing,
     }
 
-
+    [SerializeField]
+    Vector3 startingAngle;
+    [SerializeField]
+    Vector3 endingAngle;
+    [SerializeField]
+    float frequency;
 
     public Light spotlight;
     public float viewDistance;
@@ -22,14 +27,16 @@ public class SentryScript : MonoBehaviour
     GameObject player;
     Color originalSpotlightColour;
 
-    protected Vector3 m_from = new Vector3(0, 90.0f, 0);
-    protected Vector3 m_to = new Vector3(0, 180.0f, 0);
-    protected float m_frequency = 0.4f;
+    //protected Vector3 m_from = new Vector3(0, 90.0f, 0);
+    //protected Vector3 m_to = new Vector3(0, 180.0f, 0);
+    //protected float m_frequency = 0.4f;
 
     public States curState;
 
     float lastSeenTime;
-    float waitTime = 10f;
+    [SerializeField]
+    float waitTime = 4f;
+    
     
 
     void Start()
@@ -38,7 +45,7 @@ public class SentryScript : MonoBehaviour
         viewAngle = spotlight.spotAngle;
         originalSpotlightColour = spotlight.color;
 
-        lastSeenTime = Time.deltaTime + waitTime;
+        lastSeenTime = Time.time + waitTime;
 
     }
 
@@ -67,11 +74,13 @@ public class SentryScript : MonoBehaviour
             spotlight.color = originalSpotlightColour;
 
         }
+
+        lastSeenTime = Time.time + waitTime;
     }
 
     private void UpdateHomingState()
     {
-       if(!CanSeePlayer())
+       if(!CanSeePlayer() && Time.time > lastSeenTime)
        {
            curState = States.Scanning;
           
@@ -113,10 +122,10 @@ public class SentryScript : MonoBehaviour
     void RotateSpotlight()
     {
 
-        Quaternion from = Quaternion.Euler(this.m_from);
-        Quaternion to = Quaternion.Euler(this.m_to);
+        Quaternion from = Quaternion.Euler(this.startingAngle);
+        Quaternion to = Quaternion.Euler(this.endingAngle);
 
-        float lerp = 0.5f * (1.0f + Mathf.Sin(Mathf.PI * Time.realtimeSinceStartup * this.m_frequency));
+        float lerp = 0.5f * (1.0f + Mathf.Sin(Mathf.PI * Time.realtimeSinceStartup * this.frequency));
         this.transform.localRotation = Quaternion.Lerp(from, to, lerp);
 
     }
