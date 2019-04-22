@@ -9,6 +9,7 @@ public class AStarGuard : MonoBehaviour
     {
         Chase,
         Idle,
+        ReturnHome,
     }
 
     public float speed;
@@ -26,6 +27,9 @@ public class AStarGuard : MonoBehaviour
 
     Animator anim;
 
+    float waitTime;
+    float timeWaited;
+
     void Start()
     {
         viewAngle = spotlight.spotAngle;
@@ -33,6 +37,9 @@ public class AStarGuard : MonoBehaviour
         anim = GetComponent<Animator>();
 
         curState = States.Idle;
+
+        waitTime = 6f;
+        timeWaited = Time.time + waitTime;
     }
 
     void StateUpdate()
@@ -41,10 +48,25 @@ public class AStarGuard : MonoBehaviour
         {
             case States.Chase: UpdateChaseState(); break;
             case States.Idle: UpdateIdleState(); break;
+            case States.ReturnHome: UpdateReturnHomeState(); break;
         }
 
         
 
+    }
+
+    private void UpdateReturnHomeState()
+    {
+        Debug.Log("Returning Home");
+        pathfinding.GetComponent<Pathfinding>().target = pathfinding.GetComponent<Pathfinding>().homeLocation;
+
+        MoveToTarget();
+
+        if (sentry.GetComponent<SentryScript>().CanSeePlayer())
+        {
+            anim.SetBool("IsSpotted", true);
+            curState = States.Chase;
+        }
     }
 
     private void UpdateIdleState()
@@ -57,23 +79,31 @@ public class AStarGuard : MonoBehaviour
             anim.SetBool("IsSpotted", true);
             curState = States.Chase;
         }
+        if(Time.time > timeWaited)
+        {
+            anim.SetBool("IsSpotted", false);
+            curState = States.ReturnHome;
+
+        }
 
 
     }
 
     private void UpdateChaseState()
     {
-        pathfinding.GetComponent<Pathfinding>().target = pathfinding.GetComponent<Pathfinding>().target;
+        pathfinding.GetComponent<Pathfinding>().target = pathfinding.GetComponent<Pathfinding>().player;
 
         MoveToTarget();
+
         Debug.Log("Chasing");
         if (!sentry.GetComponent<SentryScript>().CanSeePlayer())
         {
             anim.SetBool("IsSpotted", false);
             curState = States.Idle;
+            
         }
-     
-       
+
+        timeWaited = Time.time + waitTime;
     }
 
 

@@ -283,6 +283,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 573992998}
     m_Modifications:
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Name
+      value: RFAIPP_Office_Table (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4473781729276122, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.2725163
@@ -338,14 +346,6 @@ PrefabInstance:
     - target: {fileID: 4473781729276122, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
       propertyPath: m_LocalScale.z
       value: 5.472896
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Name
-      value: RFAIPP_Office_Table (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
@@ -499,6 +499,8 @@ MonoBehaviour:
   seeker: {fileID: 1362720855}
   seeker2: {fileID: 27026219}
   target: {fileID: 436500452}
+  homeLocation: {fileID: 437195662}
+  player: {fileID: 436500452}
   speed: 0
 --- !u!1001 &196001394
 PrefabInstance:
@@ -1033,6 +1035,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1965077100}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &437195662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 437195661, guid: f2e7ee030e3b00e40bfe7f19120b6de6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1965077100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &513932681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1129,6 +1137,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 573992998}
     m_Modifications:
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Name
+      value: RFAIPP_Office_Table (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4473781729276122, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.552675
@@ -1184,14 +1200,6 @@ PrefabInstance:
     - target: {fileID: 4473781729276122, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
       propertyPath: m_LocalScale.z
       value: 5.472896
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Name
-      value: RFAIPP_Office_Table (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
@@ -2450,6 +2458,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 573992998}
     m_Modifications:
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Name
+      value: RFAIPP_Office_Table (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4473781729276122, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.345219
@@ -2506,14 +2522,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5.472896
       objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Name
-      value: RFAIPP_Office_Table (13)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
 --- !u!4 &1258129263 stripped
@@ -2529,6 +2537,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 573992998}
     m_Modifications:
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Name
+      value: RFAIPP_Office_Table (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4473781729276122, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.345219
@@ -2584,14 +2600,6 @@ PrefabInstance:
     - target: {fileID: 4473781729276122, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
       propertyPath: m_LocalScale.z
       value: 5.472896
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Name
-      value: RFAIPP_Office_Table (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
@@ -2940,6 +2948,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 573992998}
     m_Modifications:
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Name
+      value: RFAIPP_Office_Table (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4473781729276122, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.2725163
@@ -2995,14 +3011,6 @@ PrefabInstance:
     - target: {fileID: 4473781729276122, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
       propertyPath: m_LocalScale.z
       value: 5.472896
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Name
-      value: RFAIPP_Office_Table (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728117368571048, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ee2f4822e69f8d45b4208dc7fd37f95, type: 3}

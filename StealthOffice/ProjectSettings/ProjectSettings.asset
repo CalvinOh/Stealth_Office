@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: 00000000000000000000000000000000
+  productGUID: acc064b3d1d27ad4ba8ea565a9c8b97a
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -613,7 +613,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: 5ebfbe6f-95c2-4844-96f6-fd19fce99d98
   framebufferDepthMemorylessMode: 0
-  projectName: 
+  projectName: StealthOffice (1)
   organizationId: calvinoh
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
