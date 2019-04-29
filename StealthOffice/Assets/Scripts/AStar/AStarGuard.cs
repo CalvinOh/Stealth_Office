@@ -14,9 +14,12 @@ public class AStarGuard : MonoBehaviour
 
     public float speed;
     public GameObject pathfinding;
-    public GameObject sentry;
-   
-
+    [SerializeField]
+    GameObject sentry;
+    [SerializeField]
+    GameObject[] WaypointGuards;
+    [SerializeField]
+    Transform homeLocation;
     public States curState;
 
     public Light spotlight;
@@ -58,9 +61,9 @@ public class AStarGuard : MonoBehaviour
     private void UpdateReturnHomeState()
     {
         Debug.Log("Returning Home");
-        pathfinding.GetComponent<Pathfinding>().target = pathfinding.GetComponent<Pathfinding>().homeLocation;
+        pathfinding.GetComponent<Pathfinding>().target = homeLocation;
 
-        pathfinding.GetComponent<Pathfinding>().FindPath(pathfinding.GetComponent<Pathfinding>().seeker.position, pathfinding.GetComponent<Pathfinding>().target.position);
+        pathfinding.GetComponent<Pathfinding>().FindPath(this.transform.position, pathfinding.GetComponent<Pathfinding>().target.position);
 
         MoveToTarget();
 
@@ -69,6 +72,10 @@ public class AStarGuard : MonoBehaviour
             anim.SetBool("IsSpotted", true);
             curState = States.Chase;
         }
+        if(this.transform == homeLocation)
+        {
+            curState = States.Idle;
+        }
     }
 
     private void UpdateIdleState()
@@ -76,12 +83,12 @@ public class AStarGuard : MonoBehaviour
         spotlight.enabled = false;
   
 
-        if (sentry.GetComponent<SentryScript>().CanSeePlayer())
+        if (sentry.GetComponent<SentryScript>().CanSeePlayer() || WaypointGuardSee())
         {
             anim.SetBool("IsSpotted", true);
             curState = States.Chase;
         }
-        if(Time.time > timeWaited)
+        if(Time.time > timeWaited && this.transform != homeLocation)
         {
             anim.SetBool("IsSpotted", false);
             curState = States.ReturnHome;
@@ -91,11 +98,28 @@ public class AStarGuard : MonoBehaviour
 
     }
 
+    bool WaypointGuardSee()
+    {
+        for(int x = 0; x < WaypointGuards.Length; x++)
+        {
+            if (WaypointGuards[x].GetComponent<Guard>().CanSeePlayer())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
     private void UpdateChaseState()
     {
         pathfinding.GetComponent<Pathfinding>().target = pathfinding.GetComponent<Pathfinding>().player;
 
-        pathfinding.GetComponent<Pathfinding>().FindPath(pathfinding.GetComponent<Pathfinding>().seeker.position, pathfinding.GetComponent<Pathfinding>().target.position);
+        pathfinding.GetComponent<Pathfinding>().FindPath(this.transform.position, pathfinding.GetComponent<Pathfinding>().target.position);
 
         MoveToTarget();
 

@@ -7,7 +7,7 @@ public class Pathfinding : MonoBehaviour
    
 
 
-    public Transform seeker, seeker2, target, homeLocation, player;
+    public Transform target, player;
     Grid grid;
 
     public List<Node> path;
@@ -22,12 +22,6 @@ public class Pathfinding : MonoBehaviour
         speed = 15f;
     }
 
-    void Update()
-    {
-        //FindPath(seeker.position, target.position);
-
-        //MoveToTarget();
-    }
 
     public void FindPath(Vector3 startPos, Vector3 targetPos)
     {
@@ -106,16 +100,5 @@ public class Pathfinding : MonoBehaviour
         return 14 * dstX + 10 * (dstY - dstX);
     }
 
-    public void MoveToTarget()
-    {
-        if(path.Count > 0)
-        {
-            seeker.position = Vector3.MoveTowards(seeker.position, path[0].worldPosition, speed * Time.deltaTime);
-
-            if(Vector3.Distance(seeker.position, path[0].worldPosition) < 0.4f)
-            {
-                path.RemoveAt(0);
-            }
-        }
-    }
+  
 }

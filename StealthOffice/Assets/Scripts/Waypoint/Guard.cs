@@ -109,7 +109,7 @@ public class Guard : MonoBehaviour
         }
     }
 
-    bool CanSeePlayer()
+    public bool CanSeePlayer()
     {
         if (Vector3.Distance(transform.position, player.transform.position) < viewDistance)
         {
