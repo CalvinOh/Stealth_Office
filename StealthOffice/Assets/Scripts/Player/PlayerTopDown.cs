@@ -2,29 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerTopDown : MonoBehaviour
 {
-    
     public float moveSpeed;
 
     Rigidbody rb;
+    SphereCollider sphereCollider;
     Camera viewCamera;
     Vector3 velocity;
+    float radius;
 
-    public Light spotlight;
-    public float viewDistance;
-    public LayerMask viewMask;
-    float viewAngle;
-    Color originalSpotlightColour;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        sphereCollider = GetComponent<SphereCollider>();
+        radius = sphereCollider.radius;
         viewCamera = Camera.main;
 
-        viewAngle = spotlight.spotAngle;
-        originalSpotlightColour = spotlight.color;
+
     }
 
     // Update is called once per frame
@@ -33,16 +30,34 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePos = viewCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, viewCamera.transform.position.y));
         transform.LookAt(mousePos + Vector3.up * transform.position.y);
         velocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized * moveSpeed;
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            moveSpeed = moveSpeed * 1.5f;
+            sphereCollider.radius = 8;
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            moveSpeed = moveSpeed / 1.5f;
+            sphereCollider.radius = 6;
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            moveSpeed = moveSpeed * 0.5f;
+            sphereCollider.radius = 1;
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            moveSpeed = moveSpeed / 0.5f;
+            sphereCollider.radius = 6;
+        }
+
+        radius = sphereCollider.radius;
     }
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + velocity * Time.deltaTime);
     }
 
-    void OnDrawGizmos()
-    {
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
-    }
+  
 }

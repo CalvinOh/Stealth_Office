@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerFPS : MonoBehaviour
 {
     [SerializeField] private string horizontalInputName;
     [SerializeField] private string verticalInputName;
@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
             {
                 spotlight.enabled = false;
                 SpotLightOn = false;
-            }   
+            }
             else
             {
                 spotlight.enabled = true;
@@ -78,7 +78,7 @@ public class PlayerMove : MonoBehaviour
 
         charController.SimpleMove(forwardMovement + rightMovement);
 
-   
+
     }
     private void OnDrawGizmos()
     {
